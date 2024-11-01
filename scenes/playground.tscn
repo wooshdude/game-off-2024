@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do2ke2asio17w"]
+
+[ext_resource type="Script" path="res://scripts/hello_world.gd" id="1_0rc7i"]
+
+[node name="Playground" type="Node2D"]
+script = ExtResource("1_0rc7i")
