@@ -14,6 +14,11 @@ config/name="Game Off 2024"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalSignals="*res://scripts/globals/global_signals.gd"
+GridManager="*res://scripts/globals/grid_manager.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
