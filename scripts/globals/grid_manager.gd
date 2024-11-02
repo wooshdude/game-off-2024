@@ -20,7 +20,6 @@ func remove_object(obj: GridComponent):
 	if obj in objects.values():
 		objects.erase(obj.Position)
 
-
 func world_to_cell(position: Vector3):
 	return world.local_to_map(position)
 
