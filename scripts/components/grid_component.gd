@@ -1,6 +1,8 @@
 extends Component
 class_name GridComponent
 
+signal position_updated
+
 var Position:Vector3 :
 	set(value):
 		if GridManager.check_valid_position(value):
@@ -10,6 +12,8 @@ var Position:Vector3 :
 			# make sure to use proper conversions when setting grid positions
 			entity.position = GridManager.cell_to_world(Position)
 			GridManager.register_object(self)
+
+			position_updated.emit()
 	get:
 		return Position
 

@@ -8,7 +8,14 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		var direction: Vector3
-		direction.z = event.get_action_strength("forward") - event.get_action_strength("back")
-		print(direction)
-		grid_component.Position += direction
+		var direction: Vector3 = Vector3.ZERO
+		direction.z = event.get_action_strength("back") - event.get_action_strength("forward")
+		var move_dir := direction * Basis(-entity.transform.basis.x, entity.transform.basis.y, entity.transform.basis.z)
+		grid_component.Position += move_dir
+
+		if event.is_action_pressed("left"):
+			entity.rotation_degrees += Vector3(0,90,0)
+			grid_component.position_updated.emit()
+		elif event.is_action_pressed("right"):
+			entity.rotation_degrees += Vector3(0,-90,0)
+			grid_component.position_updated.emit()
