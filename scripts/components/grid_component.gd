@@ -3,9 +3,6 @@ class_name GridComponent
 
 signal position_updated
 
-<<<<<<< Updated upstream
-var Position:Vector3 :
-=======
 enum Direction {
 	NORTH = 0,
 	SOUTH = 180,
@@ -14,7 +11,6 @@ enum Direction {
 }
 
 var Position:Vector2i :
->>>>>>> Stashed changes
 	set(value):
 		if GridManager.check_valid_position(value):
 			GridManager.remove_object(self)
@@ -24,10 +20,6 @@ var Position:Vector2i :
 			entity.position = GridManager.cell_to_world(Position)
 			#entity.global_position = value * 16
 			GridManager.register_object(self)
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 			position_updated.emit()
 	get:
 		return Position

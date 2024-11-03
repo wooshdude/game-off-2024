@@ -3,8 +3,10 @@ extends Node
 var objects:Dictionary = {}
 var world:TileMapLayer = TileMapLayer.new()
 
+var tile_set = preload("res://resources/tile_set_default.tres")
+
 func _ready() -> void:
-	world.tile_set = load("res://tile_set.tres")
+	world.tile_set = tile_set
 	self.add_child(world)
 
 func check_valid_position(position: Vector2):
@@ -21,8 +23,8 @@ func remove_object(obj: GridComponent):
 	if obj in objects.values():
 		objects.erase(obj.Position)
 
-func world_to_cell(world_position: Vector2) -> Vector2i:
-	return world.local_to_map(world_position)
+func world_to_cell(position: Vector2):
+	return world.local_to_map(position)
 
-func cell_to_world(cell_position: Vector2i) -> Vector2:
-	return world.map_to_local(cell_position)
+func cell_to_world(position: Vector2i):
+	return world.map_to_local(position)
