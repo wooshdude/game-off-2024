@@ -19,6 +19,18 @@ config/icon="res://icon.svg"
 GlobalSignals="*res://scripts/globals/global_signals.gd"
 GridManager="*res://scripts/globals/grid_manager.gd"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=360
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray()
+
 [input]
 
 forward={
