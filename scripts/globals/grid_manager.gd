@@ -1,13 +1,15 @@
 extends Node
 
 var objects:Dictionary = {}
-var world:TileMapLayer = TileMapLayer.new()
+var world_map:TileMapLayer = TileMapLayer.new()
+
+var world_root: WorldRoot
 
 var tile_set = preload("res://resources/tile_set_default.tres")
 
 func _ready() -> void:
-	world.tile_set = tile_set
-	self.add_child(world)
+	world_map.tile_set = tile_set
+	self.add_child(world_map)
 
 func check_valid_position(position: Vector2):
 	# Check if another object is in the way
@@ -24,7 +26,7 @@ func remove_object(obj: GridComponent):
 		objects.erase(obj.Position)
 
 func world_to_cell(position: Vector2):
-	return world.local_to_map(position)
+	return world_map.local_to_map(position)
 
 func cell_to_world(position: Vector2i):
-	return world.map_to_local(position)
+	return world_map.map_to_local(position)
