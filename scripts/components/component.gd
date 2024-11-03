@@ -1,14 +1,14 @@
 extends Node
 class_name Component
 
-var entity:Node3D
+var entity
 
 # Searches tree for nearest Node2D parent node.
 func _ready() -> void:
 	var last_node = self
 	while entity == null:
 		last_node = last_node.get_parent()
-		if last_node is Node3D:
+		if last_node is Node3D or last_node is Node2D:
 			entity = last_node
 
-	#print(entity)
+	print("Discovered parent ", entity.name)
