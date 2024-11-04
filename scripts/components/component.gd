@@ -1,7 +1,7 @@
 extends Node
 class_name Component
 
-var entity
+var entity: Node
 
 # Searches tree for nearest Node2D parent node.
 func _ready() -> void:
@@ -12,3 +12,9 @@ func _ready() -> void:
 			entity = last_node
 
 	print("Discovered parent ", entity.name)
+
+func find_sibling(type: Component) -> Component:
+	for child in entity.get_children(true):
+		if typeof(child) == typeof(type) and child != type:
+			return child
+	return null

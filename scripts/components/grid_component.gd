@@ -3,13 +3,6 @@ class_name GridComponent
 
 signal position_updated
 
-enum Direction {
-	NORTH = 0,
-	SOUTH = 180,
-	EAST = 90,
-	WEST = -90
-}
-
 var Position:Vector2i :
 	set(value):
 		if GridManager.check_valid_position(value):
