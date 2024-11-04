@@ -5,5 +5,6 @@ class_name InteractionComponent
 
 func _ready() -> void:
 	super()
-	if grid_component != null:
-		grid_component = entity.find_sibling(GridComponent)
+	InteractionHandler.register_actor(self)
+	if grid_component == null:
+		grid_component = find_sibling("GridComponent")

@@ -13,8 +13,10 @@ func _ready() -> void:
 
 	print("Discovered parent ", entity.name)
 
-func find_sibling(type: Component) -> Component:
-	for child in entity.get_children(true):
-		if typeof(child) == typeof(type) and child != type:
+func find_sibling(type: String) -> Component:
+	for child in get_parent().get_children(true):
+		if child.name == type:
+			print("Found sibling %s" % child.name)
 			return child
+	print('Sibling of type %s not found' % type)
 	return null

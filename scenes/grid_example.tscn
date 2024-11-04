@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpkth4s22i83n"]
+[gd_scene load_steps=8 format=3 uid="uid://cpkth4s22i83n"]
 
 [ext_resource type="Script" path="res://scripts/world_root.gd" id="1_hdbry"]
 [ext_resource type="Script" path="res://scripts/components/grid_puppet.gd" id="1_swa8e"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/components/grid_component.gd" id="3_oiykh"]
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_8dg3a"]
 [ext_resource type="Script" path="res://scripts/components/interaction_component.gd" id="6_1mfjj"]
+[ext_resource type="Script" path="res://scripts/components/interactable.gd" id="7_gqwu2"]
 
 [node name="Node" type="Node"]
 script = ExtResource("1_hdbry")
@@ -43,5 +44,20 @@ grid_component = NodePath("../GridComponent")
 script = ExtResource("6_1mfjj")
 
 [node name="Sprite2D" type="Sprite2D" parent="World2D/Player2D"]
+scale = Vector2(0.13, 0.13)
 texture = ExtResource("2_1a1gk")
 metadata/_edit_group_ = true
+
+[node name="Interactable" type="Node2D" parent="World2D"]
+position = Vector2(40, 16)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="World2D/Interactable"]
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_1a1gk")
+
+[node name="Interactable" type="Node" parent="World2D/Interactable"]
+script = ExtResource("7_gqwu2")
+
+[node name="GridComponent" type="Node" parent="World2D/Interactable"]
+script = ExtResource("3_oiykh")

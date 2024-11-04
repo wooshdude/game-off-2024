@@ -20,5 +20,4 @@ var Position:Vector2i :
 func _ready() -> void:
 	super()
 	Position = GridManager.world_to_cell(entity.position)
-	print("position on ready ", GridManager.world_to_cell(entity.position))
 	GridManager.register_object(self)
