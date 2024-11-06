@@ -1,23 +1,17 @@
 extends Node
 
-var interactables: Array[Interactable]
-var interactors: Array[InteractionComponent]
+var interactables: Dictionary = {}
 
 func _ready() -> void:
-    pass
-
-func _physics_process(_delta: float) -> void:
-    for i: Interactable in interactables:
-        for a: InteractionComponent in interactors:
-            if a.grid_component.Position + Direction.rotate(Direction.FRONT, a.entity.rotation) == i.grid_component.Position:
-                i.enabled = true
-            else:
-                i.enabled = false
+	pass
 
 func register_interactable(interactable: Interactable):
-    if interactable not in interactables:
-        interactables.append(interactable)
+	if not interactables.has(interactable):
+		interactables[interactable.grid_component.Position] = interactable
 
-func register_actor(actor: InteractionComponent):
-    if actor not in interactors:
-        interactors.append(actor)
+func get_object_at_position(position: Vector2i) -> Interactable:
+	if interactables.has(position):
+		print('getting interaction at position ', position)
+		print(interactables[position])
+		return interactables[position]
+	return null 

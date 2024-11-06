@@ -6,4 +6,4 @@ func _ready() -> void:
 	top_level = true
 
 func _physics_process(delta: float) -> void:
-	position = GridManager.cell_to_world(grid_component.rotated(grid_component.entity.rotation))
+	position = GridManager.cell_to_world(grid_component.get_in_front())

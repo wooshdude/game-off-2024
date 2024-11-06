@@ -5,7 +5,9 @@ var enabled: bool = false
 @export var grid_component: GridComponent
 
 func _ready() -> void:
-	InteractionHandler.register_interactable(self)
+	super()
 
 	if grid_component == null:
 		grid_component = find_sibling("GridComponent")
+
+	InteractionHandler.register_interactable(self)

@@ -11,9 +11,9 @@ func _ready() -> void:
 	world_map.tile_set = tile_set
 	self.add_child(world_map)
 
-func check_valid_position(position: Vector2):
+func check_valid_position(position: Vector2i):
 	# Check if another object is in the way
-	if position in objects.keys():
+	if objects.has(position):
 		return false
 	return true
 
