@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 GlobalSignals="*res://scripts/globals/global_signals.gd"
 GridManager="*res://scripts/globals/grid_manager.gd"
 
+[dotnet]
+
+project/assembly_name="Game Off 2024"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
