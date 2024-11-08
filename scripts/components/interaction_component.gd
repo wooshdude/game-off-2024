@@ -1,22 +1,32 @@
 extends Component
 class_name InteractionComponent
 
-@export var grid_component: GridComponent
+@export var area3d: Area3D
+var mouse_inside: bool
 
-var looking_at: Interactable
+signal interacted
 
 func _ready() -> void:
 	super()
-	if grid_component == null:
-		grid_component = find_sibling("GridComponent")
-	grid_component.position_updated.connect(_on_position_updated)
 
-func _on_position_updated() -> void: 
-	var front_position:Vector2i = grid_component.get_in_front() 
-	var facing_object: GridComponent = GridManager.get_object_at_position(front_position)
-	looking_at = facing_object.find_sibling("Interactable") if looking_at == null and facing_object != null and facing_object.find_sibling("Interactable") else null
+	area3d.mouse_entered.connect(_on_mouse_entered)
+	area3d.mouse_exited.connect(_on_mouse_exited)
 
-	if Input.is_action_just_pressed("ui_accept") and looking_at != null:
-		print('interacted')
-	if Input.is_action_just_pressed("ui_accept"):
-		print('fuck')
+func _input(event: InputEvent) -> void:
+	if not mouse_inside: return
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			interacted.emit()
+
+func _process(_delta: float) -> void:
+	if area3d.global_position.distance_to(get_viewport().get_camera_3d().global_position) > 2: mouse_inside = false
+
+func _on_mouse_entered():
+	if area3d.global_position.distance_to(get_viewport().get_camera_3d().global_position) > 2: return
+	mouse_inside = true
+
+func _on_mouse_exited():
+	if area3d.global_position.distance_to(get_viewport().get_camera_3d().global_position) > 2: return
+	mouse_inside = false
+
+
