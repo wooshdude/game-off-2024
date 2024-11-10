@@ -1,9 +1,5 @@
-[gd_scene load_steps=2 format=3 uid="uid://b456a21e043dj"]
-
-[ext_resource type="Texture2D" uid="uid://d3tqmg3lmarlk" path="res://icon.svg" id="1_cirdm"]
+[gd_scene format=3 uid="uid://b456a21e043dj"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 0, 1)
-texture = ExtResource("1_cirdm")
+[node name="TileMapLayer" type="TileMapLayer" parent="."]

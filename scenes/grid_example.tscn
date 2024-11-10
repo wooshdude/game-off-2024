@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpkth4s22i83n"]
+[gd_scene load_steps=10 format=3 uid="uid://cpkth4s22i83n"]
 
 [ext_resource type="Script" path="res://scripts/world_root.gd" id="1_hdbry"]
 [ext_resource type="Script" path="res://scripts/components/grid_puppet.gd" id="1_swa8e"]
@@ -11,8 +11,12 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rm5j6"]
 
-[node name="Node" type="Node"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3rok"]
+
+[node name="Node" type="Node" node_paths=PackedStringArray("world2d", "world3d")]
 script = ExtResource("1_hdbry")
+world2d = NodePath("World2D")
+world3d = NodePath("World3D")
 
 [node name="World3D" type="Node3D" parent="."]
 
@@ -23,7 +27,6 @@ script = ExtResource("1_hdbry")
 [node name="GridPuppet" type="Node" parent="World3D/Node3D" node_paths=PackedStringArray("master")]
 script = ExtResource("1_swa8e")
 master = NodePath("../../../World2D/Player2D/Components/GridComponent")
-grid_size = null
 
 [node name="Sprite3D" type="Sprite3D" parent="World3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1, 0)
@@ -63,5 +66,8 @@ grid_component = NodePath("../GridComponent")
 scale = Vector2(0.13, 0.13)
 texture = ExtResource("2_1a1gk")
 metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World2D"]
+sprite_frames = SubResource("SpriteFrames_e3rok")
 
 [node name="Node" type="Node" parent="."]
