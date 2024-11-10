@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://cpkth4s22i83n"]
+
+[ext_resource type="Script" path="res://scripts/world_root.gd" id="1_hdbry"]
+[ext_resource type="Script" path="res://scripts/components/grid_puppet.gd" id="1_swa8e"]
+[ext_resource type="Texture2D" uid="uid://d3tqmg3lmarlk" path="res://icon.svg" id="2_1a1gk"]
+[ext_resource type="Script" path="res://scripts/components/grid_component.gd" id="3_oiykh"]
+[ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_8dg3a"]
+[ext_resource type="Script" path="res://scripts/components/interaction_component.gd" id="6_1mfjj"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_vdu7p"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rm5j6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e3rok"]
+
+[node name="Node" type="Node" node_paths=PackedStringArray("world2d", "world3d")]
+script = ExtResource("1_hdbry")
+world2d = NodePath("World2D")
+world3d = NodePath("World3D")
+
+[node name="World3D" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="World3D"]
+
+[node name="Camera3D" type="Camera3D" parent="World3D/Node3D"]
+
+[node name="GridPuppet" type="Node" parent="World3D/Node3D" node_paths=PackedStringArray("master")]
+script = ExtResource("1_swa8e")
+master = NodePath("../../../World2D/Player2D/Components/GridComponent")
+
+[node name="Sprite3D" type="Sprite3D" parent="World3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1, 0)
+axis = 1
+texture = ExtResource("2_1a1gk")
+
+[node name="Node3D2" type="Node3D" parent="World3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="World3D/Node3D2"]
+mesh = SubResource("SphereMesh_vdu7p")
+
+[node name="Area3D" type="Area3D" parent="World3D/Node3D2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="World3D/Node3D2/Area3D"]
+shape = SubResource("SphereShape3D_rm5j6")
+
+[node name="InteractionComponent" type="Node" parent="World3D/Node3D2" node_paths=PackedStringArray("area3d")]
+script = ExtResource("6_1mfjj")
+area3d = NodePath("../Area3D")
+
+[node name="World2D" type="Node2D" parent="."]
+
+[node name="Player2D" type="Node2D" parent="World2D"]
+metadata/_edit_group_ = true
+
+[node name="Components" type="Node" parent="World2D/Player2D"]
+
+[node name="GridComponent" type="Node" parent="World2D/Player2D/Components"]
+script = ExtResource("3_oiykh")
+
+[node name="PlayerMovement" type="Node" parent="World2D/Player2D/Components" node_paths=PackedStringArray("grid_component")]
+script = ExtResource("4_8dg3a")
+grid_component = NodePath("../GridComponent")
+
+[node name="Sprite2D" type="Sprite2D" parent="World2D/Player2D"]
+scale = Vector2(0.13, 0.13)
+texture = ExtResource("2_1a1gk")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World2D"]
+sprite_frames = SubResource("SpriteFrames_e3rok")
+
+[node name="Node" type="Node" parent="."]

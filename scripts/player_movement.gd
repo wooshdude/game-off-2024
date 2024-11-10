@@ -7,5 +7,15 @@ func _ready() -> void:
 	super()
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_action_pressed("ui_accept"):
-		grid_component.Position += Vector3(0,0,-1)
+	if event is InputEventKey:
+		var direction: Vector2
+		direction.y = event.get_action_strength("back") - event.get_action_strength("forward")
+		grid_component.Position += Vector2i(direction.rotated(entity.rotation))
+
+
+		if event.is_action_pressed("left"):
+			entity.rotation_degrees -= 90
+			grid_component.position_updated.emit()
+		elif event.is_action_pressed("right"):
+			grid_component.position_updated.emit()
+			entity.rotation_degrees += 90
