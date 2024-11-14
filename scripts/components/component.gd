@@ -1,10 +1,15 @@
 extends Node
 class_name Component
 
+@export var enabled: bool = true
+
 var entity: Node
 
 # Searches tree for nearest Node2D parent node.
 func _ready() -> void:
+	if not enabled:
+		self.process_mode = Node.PROCESS_MODE_DISABLED
+
 	var last_node = self
 	while entity == null:
 		last_node = last_node.get_parent()
