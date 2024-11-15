@@ -21,5 +21,5 @@ func _ready() -> void:
 	Position = GridManager.world_to_cell(entity.position)
 	GridManager.register_object(self)
 
-func get_in_front():
+func get_in_front() -> Vector2i:
 	return Position + Direction.rotate(Direction.FRONT, entity.rotation)
