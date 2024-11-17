@@ -17,4 +17,4 @@ func _ready() -> void:
 		elif child is Node3D:
 			world3d = child
 
-	GridManager.world_root = self
+#	GridManager.world_root = self

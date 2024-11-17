@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c6g82tj6v1lsw"]
+[gd_scene load_steps=13 format=3 uid="uid://c6g82tj6v1lsw"]
 
 [ext_resource type="Script" path="res://scripts/world_root.gd" id="1_hdbry"]
 [ext_resource type="Script" path="res://scripts/components/grid_puppet.gd" id="1_swa8e"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="4_8dg3a"]
 [ext_resource type="Script" path="res://scripts/components/interaction_component.gd" id="6_1mfjj"]
 [ext_resource type="Script" path="res://scripts/components/free_move_component.gd" id="8_hrqar"]
+[ext_resource type="Script" path="res://scripts/components/camera_component.gd" id="9_1s7id"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_vdu7p"]
 
@@ -29,11 +30,11 @@ world3d = NodePath("World3D")
 [node name="GridPuppet" type="Node" parent="World3D/Node3D" node_paths=PackedStringArray("master")]
 script = ExtResource("1_swa8e")
 master = NodePath("../../../World2D/Player2D/Components/GridComponent")
-enabled = false
 
 [node name="FreeMovePuppet" type="Node" parent="World3D/Node3D" node_paths=PackedStringArray("free_move_component")]
 script = ExtResource("3_g6fsp")
 free_move_component = NodePath("../../../World2D/Player2D/Components/FreeMoveComponent")
+enabled = false
 
 [node name="Sprite3D" type="Sprite3D" parent="World3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, -1, 0)
@@ -64,16 +65,19 @@ metadata/_edit_group_ = true
 
 [node name="GridComponent" type="Node" parent="World2D/Player2D/Components"]
 script = ExtResource("3_oiykh")
-enabled = false
 
-[node name="PlayerMovement" type="Node" parent="World2D/Player2D/Components" node_paths=PackedStringArray("grid_component")]
+[node name="PlayerMovement" type="Node" parent="World2D/Player2D/Components" node_paths=PackedStringArray("grid_component", "camera_component")]
 script = ExtResource("4_8dg3a")
 grid_component = NodePath("../GridComponent")
-enabled = false
+camera_component = NodePath("../CameraComponent")
 
 [node name="FreeMoveComponent" type="Node" parent="World2D/Player2D/Components"]
 script = ExtResource("8_hrqar")
 speed = 0.1
+enabled = false
+
+[node name="CameraComponent" type="Node" parent="World2D/Player2D/Components"]
+script = ExtResource("9_1s7id")
 
 [node name="Sprite2D" type="Sprite2D" parent="World2D/Player2D"]
 scale = Vector2(0.13, 0.13)
@@ -83,4 +87,14 @@ metadata/_edit_group_ = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="World2D"]
 sprite_frames = SubResource("SpriteFrames_e3rok")
 
-[node name="Node" type="Node" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="World2D"]
+
+[node name="Label" type="Label" parent="World2D/CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -132.0
+offset_right = 132.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "press SPACE to swap mouse mode"
