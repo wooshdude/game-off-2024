@@ -1,5 +1,5 @@
 extends Node2D
-class_name map_Level1
+class_name map
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,5 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 func get_tileMap(): 
-	return $Map_Creator_1
+	return $Map_Creator
 	

@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://bjc204jybtrpm"]
+[gd_scene load_steps=12 format=4 uid="uid://bjc204jybtrpm"]
 
-[ext_resource type="Script" path="res://scripts/components/walls_floors.gd" id="1_h8qbl"]
+[ext_resource type="Script" path="res://scripts/components/walls_floors.gd" id="1_3tynx"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jmena"]
 resource_name = "Material"
@@ -117,36 +117,38 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_527jf")
 
-[node name="WallsFloors" type="Node3D"]
-script = ExtResource("1_h8qbl")
+[sub_resource type="BoxShape3D" id="BoxShape3D_2ponn"]
 
-[node name="WestWall" type="Node3D" parent="."]
+[node name="WallsFloors" type="Area3D"]
+script = ExtResource("1_3tynx")
+
+[node name="SOUTHWall" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Cube" type="MeshInstance3D" parent="WestWall"]
+[node name="Cube" type="MeshInstance3D" parent="SOUTHWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991, 0)
 mesh = SubResource("ArrayMesh_ke82x")
 skeleton = NodePath("")
 
-[node name="SouthWall" type="Node3D" parent="."]
+[node name="EASTWall" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
 
-[node name="Cube" type="MeshInstance3D" parent="SouthWall"]
+[node name="Cube" type="MeshInstance3D" parent="EASTWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991, 0)
 mesh = SubResource("ArrayMesh_ke82x")
 skeleton = NodePath("")
 
-[node name="EastWall" type="Node3D" parent="."]
+[node name="NORTHWall" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="Cube" type="MeshInstance3D" parent="EastWall"]
+[node name="Cube" type="MeshInstance3D" parent="NORTHWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991, 0)
 mesh = SubResource("ArrayMesh_ke82x")
 skeleton = NodePath("")
 
-[node name="NorthWall" type="Node3D" parent="."]
+[node name="WESTWall" type="Node3D" parent="."]
 
-[node name="Cube" type="MeshInstance3D" parent="NorthWall"]
+[node name="Cube" type="MeshInstance3D" parent="WESTWall"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.991, 0)
 mesh = SubResource("ArrayMesh_ke82x")
 skeleton = NodePath("")
@@ -162,3 +164,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 0.240088, 0, 0, 0, 1, 0.240716, -0.243641, 0.520329)
 mesh = SubResource("ArrayMesh_jhrun")
 skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("BoxShape3D_2ponn")

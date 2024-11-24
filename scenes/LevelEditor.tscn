@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0wfq5xlq2n54"]
+
+[ext_resource type="Script" path="res://scripts/globals/LevelEditor.gd" id="1_nnjff"]
+[ext_resource type="PackedScene" uid="uid://cotq0vyes5r3k" path="res://scenes/map.tscn" id="2_nanr4"]
+[ext_resource type="Script" path="res://scripts/components/walls_floors.gd" id="3_8ga6m"]
+[ext_resource type="PackedScene" uid="uid://bjc204jybtrpm" path="res://scenes/Walls_Floors.tscn" id="3_86q0y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_batw2"]
+
+[node name="LevelEditor" type="Node3D"]
+script = ExtResource("1_nnjff")
+Map = ExtResource("2_nanr4")
+Walls_Floors = ExtResource("3_86q0y")
+
+[node name="Map" parent="." instance=ExtResource("2_nanr4")]
+
+[node name="WallsFloors" type="Area3D" parent="."]
+script = ExtResource("3_8ga6m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallsFloors"]
+shape = SubResource("BoxShape3D_batw2")
