@@ -30,12 +30,10 @@ func generate_map():
 		#Create a new 3d cell
 		var cell = Walls_Floors.instantiate()
 		add_child(cell)
-		#print("TILE X POSITION ; ", tile.x )
-		#print("TILE Y POSITION ; ", tile.y )
 		
 		var cellTranslation = Vector3(tile.x*2, 0, tile.y*2)
 		cell.position = cellTranslation #Vector3(tile.x*2, 0, tile.y*2)
 		cells.append(cell)
-		#print("the cell after ; ", cells)
+		
 	for cell in cells:
 		cell.update_faces(used_tiles)

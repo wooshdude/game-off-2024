@@ -1,13 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://jqfe7o32dt0g"]
+[gd_scene load_steps=4 format=3 uid="uid://jqfe7o32dt0g"]
+
+[ext_resource type="Script" path="res://scenes/player_1.gd" id="1_ktr05"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_0x00x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur3g"]
 
-[node name="Player_1" type="Node3D"]
+[node name="Player_1" type="CharacterBody3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+top_level = true
+script = ExtResource("1_ktr05")
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.250459, 0.0082285, 0.0142594, -0.00781726, 0.250769, -0.0074026, -0.0144887, 0.00694235, 0.250485, -0.0870154, 0.861372, -0.86612)
+mesh = SubResource("BoxMesh_0x00x")
+skeleton = NodePath("")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.976672, -0.00637031, -0.214641, 0, -0.999561, 0.0296662, -0.214735, -0.0289741, -0.976242, -0.0865886, 0.784761, -0.861873)
 shape = SubResource("CapsuleShape3D_5ur3g")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.961947, 0.273237, 0, -0.273237, 0.961947, 0, 1, 1)
+[node name="CameraController" type="Node3D" parent="."]
+transform = Transform3D(0.999999, 0, 0, 0, 1, 0, 0, 0, 0.999999, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraController"]
+transform = Transform3D(0.999931, -0.011803, -0.000695772, 0.011803, 0.993005, 0.117483, -0.000695772, -0.117483, 0.993076, -0.0252837, 1.22455, -0.251665)
+current = true
+fov = 83.5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CameraController/Camera3D"]
+transform = Transform3D(1, -9.31323e-10, -7.45058e-09, 0, 1, 7.45058e-09, 0, 7.45058e-09, 1, -0.117143, 0.139343, -1.166)
+omni_range = 1.013
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CameraController/Camera3D"]
+transform = Transform3D(0.999936, -0.00595865, 0.00958253, -0.00479157, 0.544629, 0.838663, -0.0102162, -0.838656, 0.544566, 1.92866, 2.80132, 0.551241)
+light_energy = 4.155
+light_indirect_energy = 6.172
+light_volumetric_fog_energy = 1.3
+light_specular = 0.32
+shadow_enabled = true
+shadow_bias = 0.245

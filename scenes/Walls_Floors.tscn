@@ -120,6 +120,7 @@ shadow_mesh = SubResource("ArrayMesh_527jf")
 [sub_resource type="BoxShape3D" id="BoxShape3D_2ponn"]
 
 [node name="WallsFloors" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 script = ExtResource("1_3tynx")
 
 [node name="SOUTHWall" type="Node3D" parent="."]

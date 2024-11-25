@@ -1,31 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://g2vutgligekf"]
+[gd_scene load_steps=5 format=3 uid="uid://g2vutgligekf"]
 
 [ext_resource type="PackedScene" uid="uid://c0wfq5xlq2n54" path="res://scenes/LevelEditor.tscn" id="1_4nekq"]
-[ext_resource type="PackedScene" uid="uid://bdew86b6kjbnk" path="res://assets/Environment/MonkeyHeadWithHat.glb" id="1_wcl5w"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5ur3g"]
+[ext_resource type="Script" path="res://scenes/Levels/Level_1/level_1.gd" id="1_iaot7"]
+[ext_resource type="PackedScene" uid="uid://jqfe7o32dt0g" path="res://scenes/Player_1.tscn" id="2_yyehn"]
+[ext_resource type="PackedScene" uid="uid://d2jebn0yjaeff" path="res://scenes/Base_Floor20_20.tscn" id="3_jglvx"]
 
 [node name="Level_1" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.3844, 0)
-
-[node name="Player_1" type="Node3D" parent="."]
-
-[node name="CharacterBody3D" type="CharacterBody3D" parent="Player_1"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player_1/CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-shape = SubResource("CapsuleShape3D_5ur3g")
-
-[node name="Camera3D" type="Camera3D" parent="Player_1"]
-transform = Transform3D(1, 0, 0, 0, 0.809017, 0.587785, 0, -0.587785, 0.809017, 14, 18, 28.104)
-current = true
-
-[node name="MonkeyHeadWithHat" parent="Player_1" instance=ExtResource("1_wcl5w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.06673, 0, -0.186177)
-visible = false
-
-[node name="SpotLight3D" type="SpotLight3D" parent="Player_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.35766, 4.84034)
+script = ExtResource("1_iaot7")
+Player = ExtResource("2_yyehn")
+Floor = ExtResource("3_jglvx")
 
 [node name="LevelEditor" parent="." instance=ExtResource("1_4nekq")]
 
