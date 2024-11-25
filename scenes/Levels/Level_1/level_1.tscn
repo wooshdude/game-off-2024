@@ -1,15 +1,29 @@
-[gd_scene load_steps=5 format=3 uid="uid://g2vutgligekf"]
+[gd_scene load_steps=9 format=3 uid="uid://g2vutgligekf"]
 
-[ext_resource type="PackedScene" uid="uid://c0wfq5xlq2n54" path="res://scenes/LevelEditor.tscn" id="1_4nekq"]
 [ext_resource type="Script" path="res://scenes/Levels/Level_1/level_1.gd" id="1_iaot7"]
 [ext_resource type="PackedScene" uid="uid://jqfe7o32dt0g" path="res://scenes/Player_1.tscn" id="2_yyehn"]
 [ext_resource type="PackedScene" uid="uid://d2jebn0yjaeff" path="res://scenes/Base_Floor20_20.tscn" id="3_jglvx"]
+[ext_resource type="Script" path="res://scripts/globals/LevelEditor.gd" id="4_synps"]
+[ext_resource type="PackedScene" uid="uid://cotq0vyes5r3k" path="res://scenes/map.tscn" id="5_65trf"]
+[ext_resource type="PackedScene" uid="uid://bjc204jybtrpm" path="res://scenes/Walls_Floors.tscn" id="6_7rnrw"]
+[ext_resource type="Script" path="res://scripts/components/walls_floors.gd" id="7_hrt6a"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_batw2"]
 
 [node name="Level_1" type="Node3D"]
 script = ExtResource("1_iaot7")
 Player = ExtResource("2_yyehn")
 Floor = ExtResource("3_jglvx")
 
-[node name="LevelEditor" parent="." instance=ExtResource("1_4nekq")]
+[node name="LevelEditor" type="Node3D" parent="."]
+script = ExtResource("4_synps")
+Map = ExtResource("5_65trf")
+Walls_Floors = ExtResource("6_7rnrw")
 
-[editable path="LevelEditor"]
+[node name="Map" parent="LevelEditor" instance=ExtResource("5_65trf")]
+
+[node name="WallsFloors" type="Area3D" parent="LevelEditor"]
+script = ExtResource("7_hrt6a")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelEditor/WallsFloors"]
+shape = SubResource("BoxShape3D_batw2")
